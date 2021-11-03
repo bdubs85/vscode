@@ -1,0 +1,116 @@
+{
+  "statedump": {
+	"prefix": "st",
+	"body": [
+		"statedump{}$0"
+	],
+	"description": "statedump"
+  },
+  "for loop": {
+	"prefix": "for",
+	"body": [
+	  "for index, ${1:tempObject} in ${2:Target} {",
+	  "    $0",
+	  "}"
+	],
+	"description": "for loop"
+  },
+  "if_not": {
+	"prefix": "if",
+	"body": [
+	  "if [${1:value}] != \"$2\" {",
+	  "    $0",
+	  "}"
+	],
+	"description": "if not"
+  },
+  "if_equal": {
+	"prefix": "if",
+	"body": [
+	  "if [${1:value}] == \"$2\" {",
+	  "    $0",
+	  "}"
+	],
+	"description": "if equal"
+  },
+  "mutate": {
+	"prefix": "mu",
+	"body": [
+	  "mutate {",
+	  "    $0",
+	  "}"
+	],
+	"description": "mutate"
+  },
+  "mutate_chain": {
+	"prefix": "mut",
+	"body": [
+	  "mutate {",
+	  "    ${1|replace,rename,merge,copy|} => {",
+	  "        \"${2:this}\" => \"%{${3:that}}\"",
+	  "    }",
+	  "}"
+	],
+	"description": "mutate_chain"
+  },
+  "replace": {
+	"prefix": "re",
+	"body": [
+	  "replace => {",
+	  "    \"${1:to}\" => \"%{${2:from}}\"",
+	  "}"
+	],
+	"description": "replace"
+  },
+  "rename": {
+	"prefix": "ren",
+	"body": [
+	  "rename => {",
+	  "    \"${1:from}\" => \"${2:to}\"",
+	  "}"
+	],
+	"description": "rename"
+  },
+  "copy": {
+	"prefix": "co",
+	"body": [
+	  "copy=> {",
+	  "    \"${1:from}\" => \"${2:to}\"",
+	  "}"
+	],
+	"description": "copy"
+  },
+  "merge": {
+	"prefix": "mer",
+	"body": [
+	  "merge=> {",
+	  "    \"${1:to}\" => \"${2:from}\"",
+	  "}"
+	],
+	"description": "merge"
+  },
+  "grok": {
+	"prefix": "gr",
+	"body": [
+	  "grok {",
+	  "    match => {",
+	  "        \"${1:source}\" => [",
+	  "            \"%{GREEDYDATA:${2:field}}\"",
+	  "        ]",
+	  "    }",
+	  "}"
+	],
+	"description": "grok"
+  },
+  "gsub": {
+	"prefix": "gs",
+	"body": [
+	  "mutate {",
+	  "  gsub => [",
+	  "    \"${1:fieldname}\", \"${2:/}\", \"${3:_}\",",
+	  "  ]",
+	  "}"
+	],
+	"description": "gsub"
+  }
+}
